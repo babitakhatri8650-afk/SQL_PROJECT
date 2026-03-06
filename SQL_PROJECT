@@ -1,3 +1,5 @@
+-- EASY LEVEL QUERIES
+
 use sql_project;
 # basic questions
 -- Q1. most senior employee based on the job title
