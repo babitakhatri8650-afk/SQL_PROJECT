@@ -1,1 +1,35 @@
+use sql_project;
+# basic questions
+-- Q1. most senior employee based on the job title
+select *from employee order by title DESC;
+-- employee- Jane Peacock and job_title - Sales Support Agent
 
+-- Q2. which country has the most invoices
+-- select billing_country,count(invoice_id) as total_invocies
+-- from invoice 
+-- group by billing_country;
+-- select* from invoice order by total_invoices desc;
+
+-- USA  has the most number of invocies(131)
+
+-- Q3 identify the top 3 invocies total
+select * from invoice order by total desc;
+-- top 3 invoices total are invoice_id 183,31,92 respectively total is 23.7599,19.8,19.8
+
+-- Q4 City with the highest total invoice amount to determine the best location for a promotional event
+select billing_city ,sum(total) as total_invoice_amount
+from invoice
+group by billing_city
+order by total_invoice_amount desc
+limit 1;
+-- Prague is the best city for permotional event (total_invoice_amount is 273.2400)
+
+-- Q5. identify the customer who has spent most money
+select customer.customer_id ,customer.first_name,customer.last_name,sum(invoice.total) as total_spent
+from customer 
+join invoice
+on customer.customer_id=customer.customer_id
+group by customer.customer_id,customer.first_name,customer.last_name
+order by total_spent desc
+limit 1;
+-- Rishabh  Mishra has the spent most money 4709.429999
